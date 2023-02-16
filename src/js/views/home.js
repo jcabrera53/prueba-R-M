@@ -1,9 +1,6 @@
 import React,{useEffect,useState}from "react";
-import Characters from "./../component/characters.js"
+import Characters from "./../component/characters.js";
 import "../../styles/home.css";
-
-
-
 
 export const Home = () => {
 	const [characters, setCharacters] = useState([]);
