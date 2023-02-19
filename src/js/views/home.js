@@ -6,13 +6,16 @@ import "../../styles/home.css";
 export const Home = () => {
 	const [people, setPeople] = useState([]);
 	const [planets, setPlanets] = useState([]);
+	const [vehicles, setVehicles] = useState([]);
 	
 	const [infoPeople, setInfoPeople] = useState("");
 	const [infoPlanets, setInfoPlanets] = useState("");
+	const [infoVehicles, setInfoVehicles] = useState("");
 	
 
 	const peopleUrl =  "https://www.swapi.tech/api/people"
 	const planetsUrl =  "https://www.swapi.tech/api/planets"
+	const vehiclesUrl =  "https://www.swapi.tech/api/vehicles"
 
 	const fetchPeople = (url)=>{
 		fetch(url)
@@ -34,12 +37,26 @@ export const Home = () => {
 		.catch(error2 => console.log(error2))
 	};
 
+	const fetchVehicles = (url3)=>{
+		fetch(url3)
+		.then(response3 => response3.json())
+		.then(data3 => {
+			setVehicles(data3.results)
+			setInfoVehicles(data3)
+		})
+		.catch(error3 => console.log(error3))
+	};
+
 	const peoplePrevious = ()=>{
 		fetchPeople(infoPeople.previous);
 	}
 
 	const planetsPrevious = ()=>{
 		fetchPlanets(infoPlanets.previous);
+	}
+
+	const vehiclesPrevious = ()=>{
+		fetchVehicles(infoVehicles.previous);
 	}
 	
 	const peopleNext = ()=>{
@@ -50,9 +67,14 @@ export const Home = () => {
 		fetchPlanets(infoPlanets.next);
 	}
 
+	const vehiclesNext = ()=>{
+		fetchVehicles(infoVehicles.next);
+	}
+
 useEffect(()=>{
 	fetchPeople(peopleUrl)
 	fetchPlanets(planetsUrl)
+	fetchVehicles(vehiclesUrl)
 },[])
 
 return (
@@ -65,6 +87,9 @@ return (
         <h1>Planets</h1>
 		<Grid category={planets} />
 		<Pagination previous={infoPlanets.previous} next={infoPlanets.next} onPrevious={planetsPrevious} onNext={planetsNext}/>
+		<h1>Vehicles</h1>
+		<Grid category={vehicles} />
+		<Pagination previous={infoVehicles.previous} next={infoVehicles.next} onPrevious={vehiclesPrevious} onNext={vehiclesNext}/>
     	</div>
 	</div>
 )
