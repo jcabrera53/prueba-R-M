@@ -1,48 +1,71 @@
 import React,{useEffect,useState}from "react";
-import Characters from "./../component/characters.js";
+import Grid from "../component/grid.js";
 import Pagination from "./../component/pagination.js";
 import "../../styles/home.css";
 
 export const Home = () => {
-	const [characters, setCharacters] = useState([]);
-	const [info, setInfo] = useState({});
+	const [people, setPeople] = useState([]);
+	const [planets, setPlanets] = useState([]);
+	
+	const [infoPeople, setInfoPeople] = useState("");
+	const [infoPlanets, setInfoPlanets] = useState("");
+	
 
-	const initialUrl =  "https://rickandmortyapi.com/api/character";
+	const peopleUrl =  "https://www.swapi.tech/api/people"
+	const planetsUrl =  "https://www.swapi.tech/api/planets"
 
-	const fetchCharacters = (url)=>{
+	const fetchPeople = (url)=>{
 		fetch(url)
 		.then(response => response.json())
 		.then(data => {
-			setCharacters(data.results)
-			setInfo(data.info)
+			setPeople(data.results)
+			setInfoPeople(data)
 		})
 		.catch(error => console.log(error))
 	};
 
-	const onPrevious = ()=>{
-		fetchCharacters(info.prev);
+	const fetchPlanets = (url2)=>{
+		fetch(url2)
+		.then(response2 => response2.json())
+		.then(data2 => {
+			setPlanets(data2.results)
+			setInfoPlanets(data2)
+		})
+		.catch(error2 => console.log(error2))
+	};
 
+	const peoplePrevious = ()=>{
+		fetchPeople(infoPeople.previous);
 	}
 
-	const onNext = ()=>{
-		fetchCharacters(info.next);
+	const planetsPrevious = ()=>{
+		fetchPlanets(infoPlanets.previous);
+	}
+	
+	const peopleNext = ()=>{
+		fetchPeople(infoPeople.next);
 	}
 
+	const planetsNext = ()=>{
+		fetchPlanets(infoPlanets.next);
+	}
 
 useEffect(()=>{
-	fetchCharacters(initialUrl);
+	fetchPeople(peopleUrl)
+	fetchPlanets(planetsUrl)
 },[])
 
 return (
 	<div className="text-center mt-5">
-		<h1>This is... My Rick and Morty App!</h1>
-
+		<h1>This is... My Star Wars App!</h1>
 		<div className="container">
-			<Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext}/>
-        <Characters characters={characters} />
-		<Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext}/>
-    </div>
-		
+		<h1>People</h1>
+		<Grid category={people} />
+		<Pagination previous={infoPeople.previous} next={infoPeople.next} onPrevious={peoplePrevious} onNext={peopleNext}/>
+        <h1>Planets</h1>
+		<Grid category={planets} />
+		<Pagination previous={infoPlanets.previous} next={infoPlanets.next} onPrevious={planetsPrevious} onNext={planetsNext}/>
+    	</div>
 	</div>
-);
-};
+)
+}

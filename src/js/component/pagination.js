@@ -1,20 +1,20 @@
 import React from "react"
 
-const Pagination = ({prev,next,onPrevious,onNext})=>{
+const Pagination = ({previous,next,onPrevious,onNext})=>{
+    
     const Previous = ()=>{
         onPrevious();
     }
 
     const Next = ()=>{
         onNext();
-        
     }
 
   return(
     <nav>
     <ul className="pagination justify-content-center">
         {
-            prev ? 
+            previous ? 
             <li className="page-item">
             <button className="page-link" onClick={Previous}>Anterior</button>
         </li>
