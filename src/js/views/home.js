@@ -79,15 +79,18 @@ useEffect(()=>{
 
 return (
 	<div className="text-center mt-5">
-		<h1>This is... My Star Wars App!</h1>
+		<h1>⭐This is... My Star Wars App!⭐</h1>
 		<div className="container">
-		<h1>People</h1>
+		<hr/>
+		<h1>🦸🏽‍♂️People🦸🏽‍♀️</h1>
 		<Grid category={people} />
 		<Pagination previous={infoPeople.previous} next={infoPeople.next} onPrevious={peoplePrevious} onNext={peopleNext}/>
-        <h1>Planets</h1>
+        <hr/>
+		<h1>🌕Planets🌕</h1>
 		<Grid category={planets} />
 		<Pagination previous={infoPlanets.previous} next={infoPlanets.next} onPrevious={planetsPrevious} onNext={planetsNext}/>
-		<h1>Vehicles</h1>
+		<hr/>
+		<h1>🚀Vehicles🚀</h1>
 		<Grid category={vehicles} />
 		<Pagination previous={infoVehicles.previous} next={infoVehicles.next} onPrevious={vehiclesPrevious} onNext={vehiclesNext}/>
     	</div>
