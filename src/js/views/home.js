@@ -1,5 +1,7 @@
 import React,{useEffect,useState}from "react";
-import Grid from "../component/grid.js";
+import GridPeople from "../component/gridPeople.js";
+import GridPlanets from "../component/gridPlanets.js";
+import GridVehicles from "../component/gridVehicles.js";
 import Pagination from "./../component/pagination.js";
 import "../../styles/home.css";
 
@@ -83,15 +85,15 @@ return (
 		<div className="container">
 		<hr/>
 		<h1>🦸🏽‍♂️People🦸🏽‍♀️</h1>
-		<Grid category={people} />
+		<GridPeople category={people} />
 		<Pagination previous={infoPeople.previous} next={infoPeople.next} onPrevious={peoplePrevious} onNext={peopleNext}/>
         <hr/>
 		<h1>🌕Planets🌕</h1>
-		<Grid category={planets} />
+		<GridPlanets category={planets} />
 		<Pagination previous={infoPlanets.previous} next={infoPlanets.next} onPrevious={planetsPrevious} onNext={planetsNext}/>
 		<hr/>
 		<h1>🚀Vehicles🚀</h1>
-		<Grid category={vehicles} />
+		<GridVehicles category={vehicles} />
 		<Pagination previous={infoVehicles.previous} next={infoVehicles.next} onPrevious={vehiclesPrevious} onNext={vehiclesNext}/>
     	</div>
 	</div>
