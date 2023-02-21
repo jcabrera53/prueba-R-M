@@ -1,7 +1,10 @@
-import React from "react"
+import React,{useContext} from "react"
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 const GridPlanets = ({category})=>{
+  const { actions } = useContext(Context);
+  
   return(
     <div className="row">
         {category.map((item, index)=> (
@@ -12,7 +15,7 @@ const GridPlanets = ({category})=>{
         <Link to={`/detailsPlanets/${item.uid}`}>
         <button className="btn btn-primary m-1">Detalles ➕</button>
         </Link>
-				<button className="btn btn-success m-1" >Agregar 🧡</button>
+				<button className="btn btn-success m-1" onClick={()=>actions.addFavorites(item.name)}>Agregar 🧡</button>
         </div>
         </div>
         ) )}
