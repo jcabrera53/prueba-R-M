@@ -82,6 +82,7 @@ useEffect(()=>{
 return (
 	<div className="text-center mt-5">
 		<h1>⭐This is... My Star Wars App!⭐</h1>
+		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/1200px-Star_wars2.svg.png" width="400" height="220"/>
 		<div className="container">
 		<hr/>
 		<h1>🦸🏽‍♂️People🦸🏽‍♀️</h1>
